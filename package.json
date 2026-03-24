@@ -1,0 +1,13 @@
+{
+  "name": "nigozi-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4321",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4321"
+  },
+  "devDependencies": {
+    "vite": "^8.0.2"
+  }
+}
