@@ -34,33 +34,34 @@ body {
   min-height: 100vh;
 }
 
-.js .site-header,
-.js main,
-.js .site-footer {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 700ms ease,
-    transform 700ms ease;
+.site-header,
+main,
+.site-footer {
+  animation: page-rise 720ms ease both;
 }
 
-.js .site-header {
-  transition-delay: 0ms;
+.site-header {
+  animation-delay: 0ms;
 }
 
-.js main {
-  transition-delay: 70ms;
+main {
+  animation-delay: 70ms;
 }
 
-.js .site-footer {
-  transition-delay: 140ms;
+.site-footer {
+  animation-delay: 140ms;
 }
 
-.js body.is-page-ready .site-header,
-.js body.is-page-ready main,
-.js body.is-page-ready .site-footer {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes page-rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body::before {
@@ -895,6 +896,7 @@ h2 {
   .button,
   .carousel-button,
   .site-nav a::after {
+    animation: none;
     transition: none;
   }
 }

@@ -1,25 +1,5 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-const startPageEntry = () => {
-  if (prefersReducedMotion) {
-    document.body.classList.add("is-page-ready");
-    return;
-  }
-
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => {
-      document.body.classList.add("is-page-ready");
-    });
-  });
-};
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", startPageEntry, { once: true });
-} else {
-  startPageEntry();
-}
 
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
