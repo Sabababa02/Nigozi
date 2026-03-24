@@ -15,10 +15,10 @@ const startPageEntry = () => {
   });
 };
 
-if (document.readyState === "complete") {
-  startPageEntry();
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startPageEntry, { once: true });
 } else {
-  window.addEventListener("load", startPageEntry, { once: true });
+  startPageEntry();
 }
 
 if (navToggle && siteNav) {

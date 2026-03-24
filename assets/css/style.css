@@ -34,9 +34,9 @@ body {
   min-height: 100vh;
 }
 
-.site-header,
-main,
-.site-footer {
+.js .site-header,
+.js main,
+.js .site-footer {
   opacity: 0;
   transform: translateY(30px);
   transition:
@@ -44,21 +44,21 @@ main,
     transform 700ms ease;
 }
 
-.site-header {
+.js .site-header {
   transition-delay: 0ms;
 }
 
-main {
+.js main {
   transition-delay: 70ms;
 }
 
-.site-footer {
+.js .site-footer {
   transition-delay: 140ms;
 }
 
-body.is-page-ready .site-header,
-body.is-page-ready main,
-body.is-page-ready .site-footer {
+.js body.is-page-ready .site-header,
+.js body.is-page-ready main,
+.js body.is-page-ready .site-footer {
   opacity: 1;
   transform: translateY(0);
 }
