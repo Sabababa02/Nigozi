@@ -18,7 +18,7 @@ if ("IntersectionObserver" in window && reveals.length) {
       });
     },
     {
-      threshold: 0.18,
+      threshold: 0.05,
     }
   );
 

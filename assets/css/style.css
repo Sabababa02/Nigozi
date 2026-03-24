@@ -54,12 +54,10 @@ main {
 
 @keyframes page-rise {
   from {
-    opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
 
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -208,7 +206,7 @@ body.is-scrolled .site-header::after {
 }
 
 main {
-  overflow: clip;
+  overflow-x: clip;
 }
 
 .hero,
@@ -868,6 +866,11 @@ h2 {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition:
@@ -875,7 +878,7 @@ h2 {
     transform 650ms ease;
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
