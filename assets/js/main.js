@@ -124,3 +124,47 @@ faqQuestions.forEach(question => {
     });
   });
 });
+
+const mailtoForms = document.querySelectorAll("[data-mailto-form]");
+
+mailtoForms.forEach(form => {
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const to = form.getAttribute("data-mailto-to") || "bonjour@nigozi.fr";
+    const subjectBase = form.getAttribute("data-mailto-subject") || "Demande de devis - Nigozi";
+
+    const nom = String(formData.get("nom") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const telephone = String(formData.get("telephone") || "").trim();
+    const typeEvenement = String(formData.get("type_evenement") || "").trim();
+    const dateEvenement = String(formData.get("date_evenement") || "").trim();
+    const nombrePersonnes = String(formData.get("nombre_personnes") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    const subject = typeEvenement ? `${subjectBase} - ${typeEvenement}` : subjectBase;
+
+    const lines = [
+      "Bonjour Nigozi,",
+      "",
+      "Je souhaite demander un devis pour un evenement.",
+      "",
+      `Nom : ${nom || "-"}`,
+      `Email : ${email || "-"}`,
+      `Telephone : ${telephone || "-"}`,
+      `Type d'evenement : ${typeEvenement || "-"}`,
+      `Date : ${dateEvenement || "-"}`,
+      `Nombre de personnes : ${nombrePersonnes || "-"}`,
+      "",
+      "Message :",
+      message || "-",
+    ];
+
+    const mailtoUrl = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      lines.join("\n")
+    )}`;
+
+    window.location.href = mailtoUrl;
+  });
+});

@@ -9,6 +9,7 @@ export default defineConfig({
         services: resolve(__dirname, "services.html"),
         histoire: resolve(__dirname, "histoire.html"),
         menu: resolve(__dirname, "menu.html"),
+        contact: resolve(__dirname, "contact.html"),
       },
     },
   },

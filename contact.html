@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Nigozi</title>
+    <meta
+      name="description"
+      content="Contactez Nigozi pour votre événement à Paris et préparez une demande de devis par email."
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script type="module" src="assets/js/main.js"></script>
+  </head>
+  <body class="page-contact">
+    <header class="site-header">
+      <div class="topbar">Cuisine géorgienne pour réceptions privées et événements professionnels à Paris</div>
+      <div class="nav-shell">
+        <a class="brand" href="index.html" aria-label="Accueil Nigozi">
+          <span class="brand-main">Nigozi</span>
+          <span class="brand-sub">Traiteur géorgien</span>
+        </a>
+        <span class="nav-walnut" aria-hidden="true">
+          <img src="assets/img/walnut-open.svg" alt="" />
+        </span>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <a href="services.html">Services</a>
+          <a href="histoire.html">Notre histoire</a>
+          <a href="menu.html">Menu</a>
+          <a class="active" href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="contact-page section-shell reveal is-visible" data-reveal>
+        <div class="contact-page-layout">
+          <div class="contact-page-copy">
+            <h1>Parlons de votre réception.</h1>
+            <p class="lead">
+              Dites-nous la date, le lieu, le nombre d'invités et le format souhaité. Nous revenons
+              vers vous avec une proposition claire, adaptée à votre événement.
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <p class="detail-title">Téléphone</p>
+                <p class="contact-item-value"><a href="tel:+33612345678">06 12 34 56 78</a></p>
+              </div>
+              <div class="contact-item">
+                <p class="detail-title">Email</p>
+                <p class="contact-item-value"><a href="mailto:bonjour@nigozi.fr">bonjour@nigozi.fr</a></p>
+              </div>
+              <div class="contact-item">
+                <p class="detail-title">Disponibilité</p>
+                <p class="contact-item-value">Paris et proche banlieue, pour réceptions privées et événements d'entreprise.</p>
+              </div>
+              <div class="contact-item">
+                <p class="detail-title">Pour votre devis</p>
+                <p class="contact-item-value">Date, lieu, nombre de convives, type d'événement et niveau de service souhaité.</p>
+              </div>
+            </div>
+          </div>
+
+          <form
+            class="quote-form-panel"
+            data-mailto-form
+            data-mailto-to="bonjour@nigozi.fr"
+            data-mailto-subject="Demande de devis - Nigozi"
+          >
+            <div class="quote-form-header">
+              <p class="section-kicker">Demander un devis</p>
+              <h2>Préparez votre message en quelques lignes.</h2>
+              <p class="form-note">
+                Le formulaire ouvre votre messagerie avec un email déjà rédigé, prêt à être envoyé.
+              </p>
+            </div>
+
+            <div class="quote-form-grid">
+              <div class="form-field">
+                <label for="nom">Nom</label>
+                <input id="nom" name="nom" type="text" autocomplete="name" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="form-field">
+                <label for="telephone">Téléphone</label>
+                <input id="telephone" name="telephone" type="tel" autocomplete="tel" />
+              </div>
+              <div class="form-field">
+                <label for="type-evenement">Type d'événement</label>
+                <select id="type-evenement" name="type_evenement" required>
+                  <option value="">Choisir</option>
+                  <option>Anniversaire</option>
+                  <option>Réception privée</option>
+                  <option>Buffet d'entreprise</option>
+                  <option>Cocktail</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="date-evenement">Date de l'événement</label>
+                <input id="date-evenement" name="date_evenement" type="date" />
+              </div>
+              <div class="form-field">
+                <label for="nombre-personnes">Nombre de personnes</label>
+                <input id="nombre-personnes" name="nombre_personnes" type="number" min="1" step="1" />
+              </div>
+              <div class="form-field field-full">
+                <label for="message">Votre demande</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="7"
+                  placeholder="Décrivez le lieu, l'ambiance souhaitée, le format du service et toute information utile."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <button class="button button-dark" type="submit">Envoyer la demande</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-brand">Nigozi</p>
+        <p>Traiteur géorgien à Paris pour réceptions privées et événements professionnels.</p>
+      </div>
+      <div>
+        <p class="footer-label">Contact</p>
+        <a href="tel:+33612345678">06 12 34 56 78</a>
+        <a href="mailto:bonjour@nigozi.fr">bonjour@nigozi.fr</a>
+      </div>
+      <div>
+        <p class="footer-label">Navigation</p>
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="histoire.html">Notre histoire</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </footer>
+  </body>
+</html>

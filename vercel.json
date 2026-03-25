@@ -20,6 +20,10 @@
     {
       "source": "/menu",
       "destination": "/menu.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
     }
   ]
 }
