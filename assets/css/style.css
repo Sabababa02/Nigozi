@@ -83,6 +83,24 @@ main {
   }
 }
 
+@keyframes walnut-spin-once {
+  0% {
+    transform: translateZ(0) rotate(0deg);
+  }
+
+  68% {
+    transform: translateZ(0) rotate(372deg);
+  }
+
+  84% {
+    transform: translateZ(0) rotate(352deg);
+  }
+
+  100% {
+    transform: translateZ(0) rotate(360deg);
+  }
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -153,7 +171,7 @@ ul {
   z-index: 0;
   width: 7rem;
   aspect-ratio: 6666.6665 / 3736.1868;
-  pointer-events: none;
+  pointer-events: auto;
   transform: translate(-50%, -50%);
   transform-origin: center;
   will-change: transform, opacity;
@@ -168,7 +186,13 @@ ul {
   filter: drop-shadow(0 6px 10px rgba(92, 52, 34, 0.1));
   backface-visibility: hidden;
   transform: translateZ(0);
+  transform-origin: center;
+  will-change: transform;
   object-fit: contain;
+}
+
+.nav-walnut:hover img {
+  animation: walnut-spin-once 760ms cubic-bezier(0.22, 1, 0.36, 1) 1;
 }
 
 .site-header::after {
@@ -293,6 +317,9 @@ main {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(239, 226, 210, 0.7));
   border-radius: calc(var(--radius) + 6px);
   box-shadow: var(--shadow);
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease;
 }
 
 .hero-media::before,
@@ -407,6 +434,7 @@ h2 {
   font-size: 0.92rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  transform: translateY(0);
   box-shadow:
     0 10px 20px rgba(66, 39, 18, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -448,7 +476,7 @@ h2 {
   transform: translateY(0) scale(0.985);
   box-shadow:
     0 6px 14px rgba(66, 39, 18, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    inset 0 2px 3px rgba(255, 255, 255, 0.12);
 }
 
 .button-dark {
@@ -614,6 +642,9 @@ h2 {
   border-radius: 26px;
   border: 1px solid rgba(25, 22, 19, 0.08);
   background: rgba(255, 255, 255, 0.7);
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease;
 }
 
 .carousel-button {
@@ -743,6 +774,10 @@ h2 {
   text-wrap: balance;
 }
 
+.services-hero .hero-actions {
+  margin-top: 0.4rem;
+}
+
 .services-intro {
   padding-top: 4.5rem;
 }
@@ -820,6 +855,24 @@ h2 {
 
 .service-feature-media img {
   min-height: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-media:hover,
+  .inner-hero-media:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 30px 72px rgba(75, 43, 18, 0.14);
+  }
+
+  .js .reveal.hero-media.is-visible:hover,
+  .js .reveal.inner-hero-media.is-visible:hover {
+    transform: translateY(-7px);
+  }
+
+  .carousel-slide:hover img {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 58px rgba(75, 43, 18, 0.14);
+  }
 }
 
 .service-feature-copy {
@@ -1147,7 +1200,7 @@ h2 {
 
 .js .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .hero-copy-delay {
