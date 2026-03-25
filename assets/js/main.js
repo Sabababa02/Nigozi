@@ -2,10 +2,40 @@ const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 
 if (navToggle && siteNav) {
+  const mobileNavMedia = window.matchMedia("(max-width: 960px)");
+
+  const syncNavAccessibility = () => {
+    const isMobile = mobileNavMedia.matches;
+    const isOpen = siteNav.classList.contains("is-open");
+
+    siteNav.inert = isMobile && !isOpen;
+
+    if (!isMobile) {
+      siteNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  };
+
   navToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", String(isOpen));
+    syncNavAccessibility();
   });
+
+  siteNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (!mobileNavMedia.matches) {
+        return;
+      }
+
+      siteNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      syncNavAccessibility();
+    });
+  });
+
+  mobileNavMedia.addEventListener("change", syncNavAccessibility);
+  syncNavAccessibility();
 }
 
 const reveals = document.querySelectorAll("[data-reveal]");

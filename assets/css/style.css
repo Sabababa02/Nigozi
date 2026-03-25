@@ -1147,15 +1147,31 @@ h2 {
 
   .site-nav {
     grid-area: nav;
-    display: none;
+    display: flex;
+    flex-direction: column;
     justify-self: stretch;
     justify-content: flex-start;
-    flex-wrap: wrap;
-    padding-top: 1rem;
+    align-items: flex-start;
+    gap: 0.9rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding-top: 0;
+    transform: translateY(-0.45rem);
+    pointer-events: none;
+    transition:
+      max-height 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 240ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      padding-top 360ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .site-nav.is-open {
-    display: flex;
+    max-height: 18rem;
+    opacity: 1;
+    padding-top: 1rem;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .hero-layout,
