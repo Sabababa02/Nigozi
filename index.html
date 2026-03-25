@@ -10,6 +10,16 @@
     />
     <script>
       document.documentElement.classList.add("js");
+
+      try {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!prefersReducedMotion) {
+          document.documentElement.classList.add("hero-curtain-pending");
+        }
+      } catch (error) {
+        document.documentElement.classList.add("hero-curtain-pending");
+      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -40,11 +50,15 @@
     <main>
       <section class="hero hero-home">
         <div class="hero-layout">
-          <figure class="hero-media reveal is-visible" data-reveal>
+          <figure class="hero-media reveal is-visible" data-reveal data-hero-curtain>
             <img
               src="assets/img/hero-feast.svg"
               alt="Buffet géorgien raffiné présenté sur une grande table en pierre claire"
             />
+            <span class="hero-curtain" aria-hidden="true">
+              <span class="hero-curtain-panel hero-curtain-panel-left"></span>
+              <span class="hero-curtain-panel hero-curtain-panel-right"></span>
+            </span>
           </figure>
           <div class="hero-copy reveal is-visible hero-copy-delay" data-reveal>
             <h1>Traiteur géorgien pour événements privés et professionnels.</h1>

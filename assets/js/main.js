@@ -1,5 +1,21 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const root = document.documentElement;
+
+const heroCurtain = document.querySelector("[data-hero-curtain]");
+
+if (heroCurtain && root.classList.contains("hero-curtain-pending")) {
+  window.requestAnimationFrame(() => {
+    window.setTimeout(() => {
+      root.classList.add("hero-curtain-open");
+    }, 280);
+  });
+
+  window.setTimeout(() => {
+    root.classList.remove("hero-curtain-open");
+    root.classList.remove("hero-curtain-pending");
+  }, 2500);
+}
 
 if (navToggle && siteNav) {
   const mobileNavMedia = window.matchMedia("(max-width: 960px)");

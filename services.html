@@ -10,6 +10,16 @@
     />
     <script>
       document.documentElement.classList.add("js");
+
+      try {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!prefersReducedMotion) {
+          document.documentElement.classList.add("hero-curtain-pending");
+        }
+      } catch (error) {
+        document.documentElement.classList.add("hero-curtain-pending");
+      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -39,8 +49,12 @@
 
     <main>
       <section class="inner-hero services-hero reveal is-visible" data-reveal>
-        <figure class="inner-hero-media">
+        <figure class="inner-hero-media" data-hero-curtain>
           <img src="assets/img/gallery-buffet.svg" alt="Buffet géorgien sur une grande table habillée" />
+          <span class="hero-curtain" aria-hidden="true">
+            <span class="hero-curtain-panel hero-curtain-panel-left"></span>
+            <span class="hero-curtain-panel hero-curtain-panel-right"></span>
+          </span>
         </figure>
         <div class="inner-hero-copy">
           <h1>Des formats souples pour chaque réception.</h1>
@@ -57,11 +71,11 @@
       </section>
 
       <section class="services-showcase">
-        <article class="service-feature reveal" data-reveal>
-          <figure class="service-feature-media inner-hero-media">
+        <article class="service-feature">
+          <figure class="service-feature-media inner-hero-media reveal-side reveal-from-right" data-reveal>
             <img src="assets/img/gallery-bites.svg" alt="Pièces cocktail géorgiennes dressées pour une réception" />
           </figure>
-          <div class="service-feature-copy">
+          <div class="service-feature-copy reveal service-copy-delay" data-reveal>
             <p class="section-kicker">Livraison avec mise en place</p>
             <h2>Un buffet prêt à recevoir vos invités.</h2>
             <p>
@@ -76,11 +90,11 @@
           </div>
         </article>
 
-        <article class="service-feature reveal" data-reveal>
-          <figure class="service-feature-media inner-hero-media">
+        <article class="service-feature">
+          <figure class="service-feature-media inner-hero-media reveal-side reveal-from-left" data-reveal>
             <img src="assets/img/gallery-spread.svg" alt="Grand repas géorgien à partager lors d'une réception" />
           </figure>
-          <div class="service-feature-copy">
+          <div class="service-feature-copy reveal service-copy-delay" data-reveal>
             <p class="section-kicker">Livraison avec service</p>
             <h2>Un accompagnement discret pendant toute la réception.</h2>
             <p>
@@ -94,11 +108,11 @@
           </div>
         </article>
 
-        <article class="service-feature reveal" data-reveal>
-          <figure class="service-feature-media inner-hero-media">
+        <article class="service-feature">
+          <figure class="service-feature-media inner-hero-media reveal-side reveal-from-right" data-reveal>
             <img src="assets/img/hero-feast.svg" alt="Buffet chaud et généreux préparé pour un événement géorgien" />
           </figure>
-          <div class="service-feature-copy">
+          <div class="service-feature-copy reveal service-copy-delay" data-reveal>
             <p class="section-kicker">Cuisine sur place</p>
             <h2>Une prestation vivante lorsque le lieu et le format le permettent.</h2>
             <p>

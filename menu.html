@@ -10,6 +10,16 @@
     />
     <script>
       document.documentElement.classList.add("js");
+
+      try {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!prefersReducedMotion) {
+          document.documentElement.classList.add("hero-curtain-pending");
+        }
+      } catch (error) {
+        document.documentElement.classList.add("hero-curtain-pending");
+      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -46,8 +56,12 @@
             demandées, à composer selon le nombre d'invités, le service et l'ambiance recherchée.
           </p>
         </div>
-        <figure class="inner-hero-media">
+        <figure class="inner-hero-media" data-hero-curtain>
           <img src="assets/img/gallery-bites.svg" alt="Sélection de bouchées géorgiennes présentées sur plateau" />
+          <span class="hero-curtain" aria-hidden="true">
+            <span class="hero-curtain-panel hero-curtain-panel-left"></span>
+            <span class="hero-curtain-panel hero-curtain-panel-right"></span>
+          </span>
         </figure>
       </section>
 
