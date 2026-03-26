@@ -315,7 +315,7 @@ main {
   grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
-  padding: 4.2rem 0 0;
+  padding: 0;
 }
 
 .hero-media,
@@ -345,12 +345,18 @@ main {
 .inner-hero-copy {
   display: grid;
   gap: clamp(0.78rem, 1.22vw, 1rem);
+  align-self: start;
 }
 
 .page-home .hero-copy {
-  max-width: 46rem;
+  max-width: 42rem;
   gap: clamp(0.72rem, 1.12vw, 0.92rem);
-  padding-top: 0.35rem;
+  padding-top: 0;
+  align-self: start;
+}
+
+.page-home .hero-layout {
+  align-items: start;
 }
 
 .page-home .hero-actions .button {
@@ -884,18 +890,18 @@ h2 {
   grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1fr);
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-  padding: 4.2rem 1.5rem 0;
+  padding: 0 1.5rem;
 }
 
 .services-hero {
   grid-template-columns: minmax(18rem, 1.04fr) minmax(0, 0.96fr);
-  align-items: start;
+  align-items: center;
 }
 
 .services-hero .inner-hero-copy {
   max-width: 42rem;
   gap: clamp(0.72rem, 1.12vw, 0.92rem);
-  padding-top: 0.75rem;
+  padding-top: 0;
 }
 
 .services-hero .inner-hero-copy h1 {
@@ -921,17 +927,16 @@ h2 {
 
 .story-hero .inner-hero-copy {
   gap: clamp(0.72rem, 1.12vw, 0.92rem);
-  padding-top: 0.35rem;
+  padding-top: 0;
 }
 
 .menu-hero {
-  align-items: start;
+  align-items: center;
 }
 
 .menu-hero .inner-hero-copy {
   gap: clamp(0.72rem, 1.12vw, 0.92rem);
-  align-self: start;
-  padding-top: 0.15rem;
+  padding-top: 0;
 }
 
 .story-hero .inner-hero-media,
@@ -1417,12 +1422,12 @@ h2 {
 
   .hero-layout {
     max-width: min(100%, calc(var(--max-width) + max(0px, calc((100vw - var(--max-width)) / 2))));
-    padding: 4.2rem 0 0;
+    padding: 0;
   }
 
   .inner-hero {
     max-width: min(100%, calc(var(--max-width) + max(0px, calc((100vw - var(--max-width)) / 2))));
-    padding: 4.2rem 1.5rem 0 0;
+    padding: 0 1.5rem 0 0;
   }
 
   .hero-layout > .hero-media,
@@ -1506,10 +1511,7 @@ h2 {
   }
 
   .nav-walnut {
-    display: block;
-    width: clamp(4.1rem, 14vw, 5rem);
-    top: 1.95rem;
-    pointer-events: none;
+    display: none;
   }
 
   .nav-toggle {
@@ -1801,11 +1803,6 @@ h2 {
 
   .nav-shell {
     padding: 0.95rem 1rem 0;
-  }
-
-  .nav-walnut {
-    width: clamp(3.7rem, 18vw, 4.5rem);
-    top: 1.82rem;
   }
 
   .brand-sub {
