@@ -1506,7 +1506,10 @@ h2 {
   }
 
   .nav-walnut {
-    display: none;
+    display: block;
+    width: clamp(4.1rem, 14vw, 5rem);
+    top: 1.95rem;
+    pointer-events: none;
   }
 
   .nav-toggle {
@@ -1798,6 +1801,11 @@ h2 {
 
   .nav-shell {
     padding: 0.95rem 1rem 0;
+  }
+
+  .nav-walnut {
+    width: clamp(3.7rem, 18vw, 4.5rem);
+    top: 1.82rem;
   }
 
   .brand-sub {
