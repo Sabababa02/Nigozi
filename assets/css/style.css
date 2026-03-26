@@ -449,7 +449,7 @@ h2 {
 .faq-answer p,
 .slide-caption p {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.75;
   font-size: 1.03rem;
 }
 
@@ -1133,7 +1133,7 @@ h2 {
 
 .contact-item-value {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .contact-item-value a {
@@ -1216,7 +1216,7 @@ h2 {
 
 .form-note {
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.75;
 }
 
 .story-layout {
@@ -1626,6 +1626,28 @@ h2 {
   .inner-hero {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .section-shell {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .contact-band,
+  .contact-page,
+  .quote-panel,
+  .site-footer,
+  .inner-hero,
+  .services-showcase,
+  .editorial-rows,
+  .timeline,
+  .menu-grid {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .faq-section {
+    padding-bottom: 2.5rem;
   }
 
   .hero-layout {
