@@ -34,7 +34,11 @@ if (navToggle && siteNav) {
     });
   });
 
-  mobileNavMedia.addEventListener("change", syncNavAccessibility);
+  if (typeof mobileNavMedia.addEventListener === "function") {
+    mobileNavMedia.addEventListener("change", syncNavAccessibility);
+  } else if (typeof mobileNavMedia.addListener === "function") {
+    mobileNavMedia.addListener(syncNavAccessibility);
+  }
   syncNavAccessibility();
 }
 
