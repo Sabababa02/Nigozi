@@ -10,16 +10,6 @@
     />
     <script>
       document.documentElement.classList.add("js");
-
-      try {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        if (!prefersReducedMotion) {
-          document.documentElement.classList.add("hero-curtain-pending");
-        }
-      } catch (error) {
-        document.documentElement.classList.add("hero-curtain-pending");
-      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -48,15 +38,11 @@
     </header>
 
     <main>
-      <section class="inner-hero services-hero reveal is-visible" data-reveal>
-        <figure class="inner-hero-media" data-hero-curtain>
+      <section class="inner-hero services-hero">
+        <figure class="inner-hero-media hero-media-reveal" data-reveal>
           <img src="Images/georgian-supra.jpg.webp" alt="Grande table georgienne preparee pour une reception" />
-          <span class="hero-curtain" aria-hidden="true">
-            <span class="hero-curtain-panel hero-curtain-panel-left"></span>
-            <span class="hero-curtain-panel hero-curtain-panel-right"></span>
-          </span>
         </figure>
-        <div class="inner-hero-copy">
+        <div class="inner-hero-copy reveal hero-copy-delay" data-reveal>
           <h1>Des formats souples pour chaque <span class="hero-word-accent">réception</span>.</h1>
           <p class="lead">
             Nous proposons des prestations adaptées aux réceptions privées comme aux événements
@@ -64,7 +50,7 @@
             qualité des plats.
           </p>
           <div class="hero-actions">
-            <a class="button button-dark" href="contact.html">Obtenir un devis</a>
+            <a class="button button-dark" href="contact.html">Contactez nous</a>
             <a class="button button-light" href="menu.html">Voir le menu</a>
           </div>
         </div>

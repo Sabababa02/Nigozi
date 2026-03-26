@@ -10,16 +10,6 @@
     />
     <script>
       document.documentElement.classList.add("js");
-
-      try {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        if (!prefersReducedMotion) {
-          document.documentElement.classList.add("hero-curtain-pending");
-        }
-      } catch (error) {
-        document.documentElement.classList.add("hero-curtain-pending");
-      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -48,20 +38,16 @@
     </header>
 
     <main>
-      <section class="inner-hero menu-hero reveal is-visible" data-reveal>
-        <div class="inner-hero-copy">
+      <section class="inner-hero menu-hero">
+        <div class="inner-hero-copy reveal hero-copy-delay" data-reveal>
           <h1>Une sélection de spécialités <span class="hero-word-accent">géorgiennes</span> pour cocktails, buffets et repas à partager.</h1>
           <p class="lead">
             Le menu s'adapte à votre format d'événement. Voici un aperçu de nos préparations les plus
             demandées, à composer selon le nombre d'invités, le service et l'ambiance recherchée.
           </p>
         </div>
-        <figure class="inner-hero-media" data-hero-curtain>
+        <figure class="inner-hero-media hero-media-reveal" data-reveal>
           <img src="Images/khachapuri-georgian-cheese-bread_600x.jpg.webp" alt="Khachapuri georgien presente comme specialite du menu" />
-          <span class="hero-curtain" aria-hidden="true">
-            <span class="hero-curtain-panel hero-curtain-panel-left"></span>
-            <span class="hero-curtain-panel hero-curtain-panel-right"></span>
-          </span>
         </figure>
       </section>
 

@@ -10,16 +10,6 @@
     />
     <script>
       document.documentElement.classList.add("js");
-
-      try {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        if (!prefersReducedMotion) {
-          document.documentElement.classList.add("hero-curtain-pending");
-        }
-      } catch (error) {
-        document.documentElement.classList.add("hero-curtain-pending");
-      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -50,17 +40,13 @@
     <main>
       <section class="hero hero-home">
         <div class="hero-layout">
-          <figure class="hero-media reveal is-visible" data-reveal data-hero-curtain>
+          <figure class="hero-media hero-media-reveal" data-reveal>
             <img
               src="Images/georgian-supra.jpg.webp"
               alt="Grande table georgienne garnie pour une reception conviviale"
             />
-            <span class="hero-curtain" aria-hidden="true">
-              <span class="hero-curtain-panel hero-curtain-panel-left"></span>
-              <span class="hero-curtain-panel hero-curtain-panel-right"></span>
-            </span>
           </figure>
-          <div class="hero-copy reveal is-visible hero-copy-delay" data-reveal>
+          <div class="hero-copy reveal hero-copy-delay" data-reveal>
             <h1>La <span class="hero-word-accent">Géorgie</span> à votre table</h1>
             <p class="lead">
               Nous sommes un service de traiteur basé à Paris, spécialisé dans la cuisine géorgienne
@@ -68,7 +54,7 @@
               d'entreprise avec une approche souple, élégante et généreuse.
             </p>
             <div class="hero-actions">
-              <a class="button button-dark" href="services.html">Découvrir nos services</a>
+              <a class="button button-dark" href="services.html">Nos services</a>
               <a class="button button-home-light" href="histoire.html">Notre histoire</a>
             </div>
           </div>
@@ -124,23 +110,13 @@
 
       </section>
 
-      <section class="contact-band section-shell reveal" id="contact" data-reveal>
-        <div>
-          <p class="section-kicker">Nous contacter</p>
-          <h2>Un échange simple pour organiser votre réception.</h2>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-copy">
-            <p>
-              Traiteur géorgien à Paris pour les particuliers et les entreprises. Nous adaptons le
-              format, le volume et le service à votre événement.
-            </p>
-            <p class="contact-phone">Téléphone : <a href="tel:+33612345678">06 12 34 56 78</a></p>
+      <section class="contact-band contact-band-minimal section-shell reveal" id="contact" data-reveal>
+        <div class="contact-instant">
+          <div class="contact-instant-copy">
+            <h2>Devis instantané</h2>
+            <p>Éditez votre devis en 3 clics</p>
           </div>
-          <div class="contact-actions">
-            <a class="button button-dark" href="contact.html">Obtenir un devis</a>
-            <p class="contact-note">Livraison, mise en place, service ou cuisine sur place.</p>
-          </div>
+          <a class="contact-instant-button" href="contact.html" aria-label="Demander un devis">→</a>
         </div>
       </section>
 

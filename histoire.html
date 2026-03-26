@@ -10,16 +10,6 @@
     />
     <script>
       document.documentElement.classList.add("js");
-
-      try {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        if (!prefersReducedMotion) {
-          document.documentElement.classList.add("hero-curtain-pending");
-        }
-      } catch (error) {
-        document.documentElement.classList.add("hero-curtain-pending");
-      }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/main.js"></script>
@@ -48,8 +38,8 @@
     </header>
 
     <main>
-      <section class="inner-hero story-hero reveal is-visible" data-reveal>
-        <div class="inner-hero-copy">
+      <section class="inner-hero story-hero">
+        <div class="inner-hero-copy reveal hero-copy-delay" data-reveal>
           <h1>La cuisine <span class="hero-word-accent">géorgienne</span> à Paris par deux amis de longue date.</h1>
           <p class="lead">
             Luka et Anzo ont travaillé ensemble pendant plusieurs années dans un restaurant géorgien.
@@ -57,12 +47,8 @@
             personnel et pensé pour des événements de toutes tailles.
           </p>
         </div>
-        <figure class="inner-hero-media" data-hero-curtain>
+        <figure class="inner-hero-media hero-media-reveal" data-reveal>
           <img src="Images/ojakhuri-georgian-family-meal_600x.jpg.webp" alt="Plat georgien familial evoquant une cuisine de partage" />
-          <span class="hero-curtain" aria-hidden="true">
-            <span class="hero-curtain-panel hero-curtain-panel-left"></span>
-            <span class="hero-curtain-panel hero-curtain-panel-right"></span>
-          </span>
         </figure>
       </section>
 
@@ -120,9 +106,9 @@
             lieux privés, des espaces professionnels et des moments de fête qui demandent une vraie
             attention au goût comme à l'atmosphère.
           </p>
-          <div class="quote-actions">
-            <a class="button button-dark" href="contact.html">Obtenir un devis</a>
-            <a class="button button-ghost" href="menu.html">Découvrir le menu</a>
+          <div class="quote-actions quote-actions-story">
+            <a class="button button-dark" href="contact.html">Contactez nous</a>
+            <a class="button button-ghost" href="menu.html">Voir le menu</a>
           </div>
         </div>
       </section>
