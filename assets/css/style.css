@@ -320,6 +320,7 @@ main {
 
 .hero-media,
 .inner-hero-media {
+  margin: 0;
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255, 248, 241, 0.88), rgba(234, 216, 197, 0.82));
@@ -1487,7 +1488,7 @@ h2 {
       "brand toggle"
       "nav nav";
     gap: 0.8rem;
-    padding: 1rem 1.15rem 1.1rem;
+    padding: 1rem 1.15rem 0;
   }
 
   .brand {
@@ -1574,15 +1575,15 @@ h2 {
   }
 
   .hero-layout {
-    padding: 3rem 0 0;
+    padding: 0;
   }
 
   .inner-hero {
-    padding: 3rem 0 0;
+    padding: 0;
   }
 
   .hero-home {
-    padding: 1.2rem 0 0;
+    padding: 0;
   }
 
   .hero-layout > .hero-media,
@@ -1796,7 +1797,7 @@ h2 {
   }
 
   .nav-shell {
-    padding: 0.95rem 1rem 1rem;
+    padding: 0.95rem 1rem 0;
   }
 
   .brand-sub {
@@ -1846,16 +1847,16 @@ h2 {
 
   .hero-layout {
     gap: 1.2rem;
-    padding: 2.45rem 0 0;
+    padding: 0;
   }
 
   .inner-hero {
     gap: 1.25rem;
-    padding: 2.45rem 0 0;
+    padding: 0;
   }
 
   .hero-home {
-    padding: 1rem 0 0;
+    padding: 0;
   }
 
   .hero-copy,
