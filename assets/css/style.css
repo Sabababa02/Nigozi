@@ -1342,11 +1342,22 @@ h2 {
     grid-template-areas:
       "brand toggle"
       "nav nav";
+    gap: 0.8rem;
+    padding: 1rem 1.15rem 1.1rem;
   }
 
   .brand {
     grid-area: brand;
     justify-self: start;
+  }
+
+  .brand-main {
+    font-size: clamp(1.55rem, 5.8vw, 2.15rem);
+  }
+
+  .brand-sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
   }
 
   .nav-walnut {
@@ -1383,6 +1394,7 @@ h2 {
       transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
       padding-top 360ms cubic-bezier(0.22, 1, 0.36, 1),
       padding-bottom 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    border-top: 1px solid var(--line);
   }
 
   .site-nav::-webkit-scrollbar {
@@ -1392,6 +1404,7 @@ h2 {
   .site-nav a {
     flex: none;
     white-space: nowrap;
+    font-size: 0.9rem;
   }
 
   .site-nav.is-open {
@@ -1412,6 +1425,25 @@ h2 {
   .editorial-row,
   .service-feature {
     grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .hero-layout {
+    padding: 1.4rem 0 3.4rem;
+  }
+
+  .inner-hero {
+    padding-top: 3rem;
+  }
+
+  .hero-home {
+    padding-top: 1.2rem;
+  }
+
+  .hero-media img,
+  .inner-hero-media img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
   }
 
   .service-feature .service-feature-media,
@@ -1433,6 +1465,83 @@ h2 {
 
   .carousel-button {
     display: none;
+  }
+
+  .hero-actions,
+  .contact-actions,
+  .quote-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .button,
+  .contact-actions .button,
+  .quote-actions .button,
+  .quote-form-panel .button {
+    width: 100%;
+  }
+
+  .page-home .hero-copy,
+  .services-hero .inner-hero-copy,
+  .story-hero .inner-hero-copy,
+  .menu-hero .inner-hero-copy {
+    gap: 1rem;
+    padding-top: 0;
+  }
+
+  .contact-band {
+    gap: 1.4rem;
+  }
+
+  .contact-band .contact-actions {
+    justify-items: stretch;
+  }
+
+  .contact-note {
+    max-width: none;
+    text-align: left;
+  }
+
+  .services-showcase {
+    padding-top: 3.4rem;
+  }
+
+  .service-feature {
+    padding: 1.6rem 0;
+  }
+
+  .service-feature-copy,
+  .service-feature-meta {
+    max-width: 100%;
+  }
+
+  .menu-block {
+    padding: 1.3rem;
+  }
+
+  .contact-page {
+    padding-top: 3.2rem;
+  }
+
+  .contact-page-copy {
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+  .quote-form-panel {
+    padding: 1.35rem;
+    border-radius: 24px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 16px;
+  }
+
+  .site-footer {
+    gap: 1.2rem;
+    padding-top: 1.9rem;
   }
 
   h1 {
@@ -1492,6 +1601,15 @@ h2 {
     letter-spacing: 0.12em;
   }
 
+  .nav-shell {
+    padding: 0.95rem 1rem 1rem;
+  }
+
+  .brand-sub {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+  }
+
   .hero-home {
     padding-inline: 1rem;
   }
@@ -1508,6 +1626,21 @@ h2 {
   .inner-hero {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .hero-layout {
+    gap: 1.2rem;
+    padding: 0.9rem 0 2.6rem;
+  }
+
+  .inner-hero {
+    gap: 1.25rem;
+    padding-top: 2.45rem;
+  }
+
+  .hero-media img,
+  .inner-hero-media img {
+    aspect-ratio: 1.04 / 1;
   }
 
   h1 {
@@ -1580,7 +1713,26 @@ h2 {
   }
 
   .carousel-track {
-    grid-auto-columns: minmax(82vw, 82vw);
+    grid-auto-columns: minmax(88vw, 88vw);
+    padding-bottom: 0.7rem;
+  }
+
+  .hero-actions,
+  .contact-actions,
+  .quote-actions {
+    gap: 0.8rem;
+  }
+
+  .quote-form-panel {
+    padding: 1.15rem;
+  }
+
+  .quote-form-grid {
+    gap: 0.85rem;
+  }
+
+  .site-footer {
+    padding-bottom: 2rem;
   }
 
   .faq-question {
