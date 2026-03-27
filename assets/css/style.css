@@ -365,6 +365,10 @@ main {
   align-self: start;
 }
 
+.mobile-hero-actions-block {
+  display: none;
+}
+
 .page-home .hero-copy {
   max-width: 42rem;
   gap: clamp(0.72rem, 1.12vw, 0.92rem);
@@ -1019,6 +1023,10 @@ h2 {
 
 .menu-grid-heading {
   padding-bottom: 1.9rem;
+}
+
+.services-showcase-cta {
+  display: none;
 }
 
 .service-feature {
@@ -2070,6 +2078,8 @@ h2 {
     min-height: auto;
     display: block;
     gap: 0;
+    opacity: var(--hero-scroll-opacity, 1);
+    will-change: opacity;
   }
 
   .page-home .hero-layout {
@@ -2206,6 +2216,11 @@ h2 {
     display: none;
   }
 
+  .inner-hero-copy h1 {
+    transform: translate3d(0, var(--hero-title-shift, 0px), 0);
+    will-change: transform;
+  }
+
   .page-home .hero-actions {
     display: flex;
     flex-direction: column;
@@ -2222,6 +2237,8 @@ h2 {
     align-items: center;
     gap: 0.75rem;
     margin-top: 0.95rem;
+    transform: translate3d(0, var(--hero-title-shift, 0px), 0);
+    will-change: transform;
   }
 
   .page-home .hero-actions .button {
@@ -2232,6 +2249,23 @@ h2 {
   }
 
   .inner-hero .hero-actions .button {
+    min-width: 11.2rem;
+    min-height: 2.9rem;
+    padding-inline: 0.95rem;
+    justify-content: center;
+  }
+
+  .services-hero .hero-actions {
+    display: none;
+  }
+
+  .services-showcase-cta {
+    display: grid;
+    justify-items: center;
+    padding-top: 1.35rem;
+  }
+
+  .services-showcase-cta .button {
     min-width: 11.2rem;
     min-height: 2.9rem;
     padding-inline: 0.95rem;
