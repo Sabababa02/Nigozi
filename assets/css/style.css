@@ -15,6 +15,7 @@
   --display: "Didot", "Bodoni MT", "Times New Roman", serif;
   --body: "Avenir Next", "Helvetica Neue", sans-serif;
   --radius: 28px;
+  --content-image-radius: 26px;
   --button-radius: 16px;
 }
 
@@ -396,6 +397,7 @@ main {
   min-height: 3.05rem;
   padding-inline: 1.15rem;
   border-radius: var(--button-radius);
+  width: 13.2rem;
 }
 
 .eyebrow,
@@ -704,6 +706,13 @@ h2 {
     box-shadow 220ms ease;
 }
 
+.contact-instant-button span {
+  display: block;
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-0.04em);
+}
+
 .contact-instant-button svg {
   width: 1.28rem;
   height: 1.28rem;
@@ -781,6 +790,8 @@ h2 {
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
   padding: 0.2rem 0.1rem 1rem;
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior-inline: contain;
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -799,7 +810,7 @@ h2 {
 }
 
 .carousel-slide img {
-  border-radius: 26px;
+  border-radius: var(--content-image-radius);
   border: 1px solid rgba(25, 22, 19, 0.08);
   background: rgba(255, 247, 240, 0.74);
   transition:
@@ -1039,6 +1050,11 @@ h2 {
 
 .service-feature-media img {
   min-height: 100%;
+}
+
+.service-feature .service-feature-media,
+.service-feature .service-feature-media img {
+  border-radius: var(--content-image-radius);
 }
 
 .reveal-side {
@@ -1604,8 +1620,11 @@ h2 {
     position: fixed;
     left: 0;
     right: 0;
+    width: 100vw;
     top: 5.7rem;
-    bottom: 0;
+    bottom: auto;
+    height: calc(100dvh - 5.7rem);
+    min-height: calc(100vh - 5.7rem);
     z-index: 12;
     display: grid;
     align-content: start;

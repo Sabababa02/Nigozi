@@ -134,6 +134,11 @@ if (carousel) {
   const prevButton = carousel.querySelector(".carousel-prev");
   const nextButton = carousel.querySelector(".carousel-next");
   const dots = [...document.querySelectorAll(".carousel-dots .dot")];
+  const mobileCarouselMedia = window.matchMedia("(max-width: 960px)");
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartScrollLeft = 0;
+  let touchMode = null;
 
   const getStep = () => {
     if (!slides.length) {
@@ -175,6 +180,58 @@ if (carousel) {
   track.addEventListener("scroll", syncDots, { passive: true });
   window.addEventListener("resize", syncDots);
   syncDots();
+
+  track.addEventListener(
+    "touchstart",
+    event => {
+      if (!mobileCarouselMedia.matches || event.touches.length !== 1) {
+        return;
+      }
+
+      const touch = event.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchStartScrollLeft = track.scrollLeft;
+      touchMode = null;
+    },
+    { passive: true }
+  );
+
+  track.addEventListener(
+    "touchmove",
+    event => {
+      if (!mobileCarouselMedia.matches || event.touches.length !== 1) {
+        return;
+      }
+
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      if (!touchMode) {
+        if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) {
+          return;
+        }
+
+        touchMode = Math.abs(deltaX) > Math.abs(deltaY) ? "horizontal" : "vertical";
+      }
+
+      if (touchMode !== "horizontal") {
+        return;
+      }
+
+      event.preventDefault();
+      track.scrollLeft = touchStartScrollLeft - deltaX;
+    },
+    { passive: false }
+  );
+
+  const resetTouchMode = () => {
+    touchMode = null;
+  };
+
+  track.addEventListener("touchend", resetTouchMode, { passive: true });
+  track.addEventListener("touchcancel", resetTouchMode, { passive: true });
 }
 
 const faqQuestions = document.querySelectorAll(".faq-question");
