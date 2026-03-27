@@ -1,13 +1,23 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const siteHeader = document.querySelector(".site-header");
 
-if (navToggle && siteNav) {
+if (navToggle && siteNav && siteHeader) {
   const mobileNavMedia = window.matchMedia("(max-width: 960px)");
+  const updateMobileHeaderOffset = () => {
+    if (!mobileNavMedia.matches) {
+      document.documentElement.style.removeProperty("--mobile-header-offset");
+      return;
+    }
+
+    document.documentElement.style.setProperty("--mobile-header-offset", `${siteHeader.offsetHeight}px`);
+  };
 
   const syncNavAccessibility = () => {
     const isMobile = mobileNavMedia.matches;
     const isOpen = siteNav.classList.contains("is-open");
 
+    updateMobileHeaderOffset();
     siteNav.inert = isMobile && !isOpen;
     document.body.classList.toggle("menu-open", isMobile && isOpen);
     navToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
@@ -42,6 +52,7 @@ if (navToggle && siteNav) {
   } else if (typeof mobileNavMedia.addListener === "function") {
     mobileNavMedia.addListener(syncNavAccessibility);
   }
+  window.addEventListener("resize", updateMobileHeaderOffset);
   syncNavAccessibility();
 }
 

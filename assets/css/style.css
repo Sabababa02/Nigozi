@@ -706,17 +706,15 @@ h2 {
     box-shadow 220ms ease;
 }
 
-.contact-instant-button span {
-  display: block;
-  font-size: 2rem;
-  line-height: 1;
-  transform: translateY(-0.04em);
-}
-
 .contact-instant-button svg {
-  width: 1.28rem;
-  height: 1.28rem;
+  width: 1.55rem;
+  height: 1.55rem;
   display: block;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .service-strip {
@@ -1621,10 +1619,10 @@ h2 {
     left: 0;
     right: 0;
     width: 100vw;
-    top: 5.7rem;
+    top: var(--mobile-header-offset, 5.7rem);
     bottom: auto;
-    height: calc(100dvh - 5.7rem);
-    min-height: calc(100vh - 5.7rem);
+    height: calc(100dvh - var(--mobile-header-offset, 5.7rem));
+    min-height: calc(100vh - var(--mobile-header-offset, 5.7rem));
     z-index: 12;
     display: grid;
     align-content: start;
