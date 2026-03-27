@@ -898,6 +898,10 @@ h2 {
   align-items: center;
 }
 
+.services-hero .inner-hero-media {
+  align-self: start;
+}
+
 .services-hero .inner-hero-copy {
   max-width: 42rem;
   gap: clamp(0.72rem, 1.12vw, 0.92rem);
@@ -1409,48 +1413,48 @@ h2 {
 
 @media (min-width: 961px) {
   .hero-home {
-    padding: 0 1.5rem 0 0;
+    padding: 0 1.5rem;
   }
 
   .hero-layout,
   .inner-hero {
-    margin-left: 0;
+    margin-left: auto;
     margin-right: auto;
-    gap: clamp(2.2rem, 3.6vw, 4.2rem);
-    grid-template-columns: minmax(0, 1.22fr) minmax(23rem, 0.78fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
   }
 
   .hero-layout {
-    max-width: min(100%, calc(var(--max-width) + max(0px, calc((100vw - var(--max-width)) / 2))));
+    max-width: calc(var(--max-width) + 1rem);
     padding: 0;
   }
 
   .inner-hero {
-    max-width: min(100%, calc(var(--max-width) + max(0px, calc((100vw - var(--max-width)) / 2))));
-    padding: 0 1.5rem 0 0;
+    max-width: var(--max-width);
+    padding: 0 1.5rem;
   }
 
   .hero-layout > .hero-media,
   .inner-hero > .inner-hero-media {
-    width: calc(100% + max(0px, calc((100vw - var(--max-width)) / 2)));
-    margin-left: min(0px, calc((100vw - var(--max-width)) / -2));
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    width: auto;
+    margin-left: 0;
+    border-top-left-radius: calc(var(--radius) + 6px);
+    border-bottom-left-radius: calc(var(--radius) + 6px);
   }
 
   .hero-layout > .hero-media img,
   .inner-hero > .inner-hero-media img {
     width: 100%;
-    min-height: clamp(31rem, 44vw, 42rem);
+    min-height: auto;
     object-fit: cover;
   }
 
   .hero-layout > .hero-media::before,
   .inner-hero > .inner-hero-media::before {
-    left: 0;
-    border-left: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    left: 1rem;
+    border-left: 1px solid rgba(86, 42, 34, 0.14);
+    border-top-left-radius: calc(var(--radius) - 4px);
+    border-bottom-left-radius: calc(var(--radius) - 4px);
   }
 }
 
