@@ -10,7 +10,9 @@ if (navToggle && siteNav && siteHeader) {
       return;
     }
 
-    document.documentElement.style.setProperty("--mobile-header-offset", `${siteHeader.offsetHeight}px`);
+    const headerRect = siteHeader.getBoundingClientRect();
+    const visibleHeaderBottom = Math.max(Math.min(headerRect.bottom, siteHeader.offsetHeight), 0);
+    document.documentElement.style.setProperty("--mobile-header-offset", `${visibleHeaderBottom}px`);
   };
 
   const syncNavAccessibility = () => {
@@ -97,22 +99,34 @@ updateScrollState();
 const homeHero = document.querySelector(".page-home .hero-home");
 const homeHeroTitle = document.querySelector(".page-home .hero-copy h1");
 const homeHeroNextSection = homeHero?.nextElementSibling;
+const heroImageSections = [...document.querySelectorAll(".hero-home, .inner-hero")];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileHeroTitleMotion = window.matchMedia("(max-width: 640px)");
 
 if (homeHero && homeHeroTitle && !prefersReducedMotion.matches) {
   let heroTitleTicking = false;
 
+  const resetHomeHeroMotion = () => {
+    homeHeroTitle.style.removeProperty("--hero-title-shift");
+    homeHero.style.removeProperty("--hero-scroll-opacity");
+  };
+
   const updateHeroTitleShift = () => {
+    if (!mobileHeroTitleMotion.matches) {
+      resetHomeHeroMotion();
+      heroTitleTicking = false;
+      return;
+    }
+
     const heroRange = Math.max(homeHero.offsetHeight * 0.9, 1);
     const progress = Math.min(Math.max(window.scrollY / heroRange, 0), 1);
-    const maxShift = mobileHeroTitleMotion.matches ? 60 : 28;
+    const maxShift = 60;
     const shift = -(progress * maxShift);
     const nextSectionDistance = homeHeroNextSection
       ? Math.max(homeHeroNextSection.offsetTop - homeHero.offsetTop, 1)
       : 0;
     const fadeRange = Math.max(
-      nextSectionDistance || homeHero.offsetHeight * (mobileHeroTitleMotion.matches ? 1.02 : 0.95),
+      nextSectionDistance || homeHero.offsetHeight * 1.02,
       1
     );
     const opacityProgress = Math.min(Math.max(window.scrollY / fadeRange, 0), 1);
@@ -134,7 +148,60 @@ if (homeHero && homeHeroTitle && !prefersReducedMotion.matches) {
 
   window.addEventListener("scroll", requestHeroTitleShift, { passive: true });
   window.addEventListener("resize", requestHeroTitleShift);
+  if (typeof mobileHeroTitleMotion.addEventListener === "function") {
+    mobileHeroTitleMotion.addEventListener("change", requestHeroTitleShift);
+  } else if (typeof mobileHeroTitleMotion.addListener === "function") {
+    mobileHeroTitleMotion.addListener(requestHeroTitleShift);
+  }
   requestHeroTitleShift();
+}
+
+if (heroImageSections.length && !prefersReducedMotion.matches) {
+  let heroImageTicking = false;
+
+  const resetHeroImageMotion = () => {
+    heroImageSections.forEach(section => {
+      section.style.removeProperty("--hero-image-shift");
+    });
+  };
+
+  const updateHeroImageShift = () => {
+    if (!mobileHeroTitleMotion.matches) {
+      resetHeroImageMotion();
+      heroImageTicking = false;
+      return;
+    }
+
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+
+    heroImageSections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const travel = viewportHeight + rect.height;
+      const progress = Math.min(Math.max((viewportHeight - rect.top) / Math.max(travel, 1), 0), 1);
+      const imageShift = -(progress * 42);
+      section.style.setProperty("--hero-image-shift", `${imageShift.toFixed(2)}px`);
+    });
+
+    heroImageTicking = false;
+  };
+
+  const requestHeroImageShift = () => {
+    if (heroImageTicking) {
+      return;
+    }
+
+    heroImageTicking = true;
+    window.requestAnimationFrame(updateHeroImageShift);
+  };
+
+  window.addEventListener("scroll", requestHeroImageShift, { passive: true });
+  window.addEventListener("resize", requestHeroImageShift);
+  if (typeof mobileHeroTitleMotion.addEventListener === "function") {
+    mobileHeroTitleMotion.addEventListener("change", requestHeroImageShift);
+  } else if (typeof mobileHeroTitleMotion.addListener === "function") {
+    mobileHeroTitleMotion.addListener(requestHeroImageShift);
+  }
+  requestHeroImageShift();
 }
 
 const carousel = document.querySelector("[data-carousel]");
