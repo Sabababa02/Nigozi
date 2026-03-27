@@ -80,6 +80,49 @@ const updateScrollState = () => {
 window.addEventListener("scroll", updateScrollState, { passive: true });
 updateScrollState();
 
+const homeHero = document.querySelector(".page-home .hero-home");
+const homeHeroTitle = document.querySelector(".page-home .hero-copy h1");
+const homeHeroNextSection = homeHero?.nextElementSibling;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const mobileHeroTitleMotion = window.matchMedia("(max-width: 640px)");
+
+if (homeHero && homeHeroTitle && !prefersReducedMotion.matches) {
+  let heroTitleTicking = false;
+
+  const updateHeroTitleShift = () => {
+    const heroRange = Math.max(homeHero.offsetHeight * 0.9, 1);
+    const progress = Math.min(Math.max(window.scrollY / heroRange, 0), 1);
+    const maxShift = mobileHeroTitleMotion.matches ? 60 : 28;
+    const shift = -(progress * maxShift);
+    const nextSectionDistance = homeHeroNextSection
+      ? Math.max(homeHeroNextSection.offsetTop - homeHero.offsetTop, 1)
+      : 0;
+    const fadeRange = Math.max(
+      nextSectionDistance || homeHero.offsetHeight * (mobileHeroTitleMotion.matches ? 1.02 : 0.95),
+      1
+    );
+    const opacityProgress = Math.min(Math.max(window.scrollY / fadeRange, 0), 1);
+    const heroOpacity = 1 - opacityProgress;
+
+    homeHeroTitle.style.setProperty("--hero-title-shift", `${shift.toFixed(2)}px`);
+    homeHero.style.setProperty("--hero-scroll-opacity", heroOpacity.toFixed(3));
+    heroTitleTicking = false;
+  };
+
+  const requestHeroTitleShift = () => {
+    if (heroTitleTicking) {
+      return;
+    }
+
+    heroTitleTicking = true;
+    window.requestAnimationFrame(updateHeroTitleShift);
+  };
+
+  window.addEventListener("scroll", requestHeroTitleShift, { passive: true });
+  window.addEventListener("resize", requestHeroTitleShift);
+  requestHeroTitleShift();
+}
+
 const carousel = document.querySelector("[data-carousel]");
 
 if (carousel) {

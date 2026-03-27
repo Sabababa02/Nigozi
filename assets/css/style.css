@@ -358,6 +358,8 @@ main {
 
 .page-home .hero-layout {
   align-items: start;
+  opacity: var(--hero-scroll-opacity, 1);
+  will-change: opacity;
 }
 
 .page-home .hero-actions .button {
@@ -417,6 +419,8 @@ h1 {
   line-height: 1.03;
   max-width: 16ch;
   text-wrap: balance;
+  transform: translate3d(0, var(--hero-title-shift, 0px), 0);
+  will-change: transform;
 }
 
 .hero-word-accent {
@@ -1447,6 +1451,10 @@ h2 {
     padding: 0;
   }
 
+  .page-home .hero-copy {
+    padding-top: 0;
+  }
+
   .inner-hero {
     max-width: var(--max-width);
     padding: 0 1.5rem;
@@ -1457,8 +1465,8 @@ h2 {
     width: 100%;
     aspect-ratio: 3 / 2;
     margin-left: 0;
-    margin-top: clamp(0.9rem, 1.6vw, 1.4rem);
-    align-self: center;
+    margin-top: 0;
+    align-self: start;
     border-top-left-radius: calc(var(--radius) + 6px);
     border-bottom-left-radius: calc(var(--radius) + 6px);
   }
@@ -1471,6 +1479,23 @@ h2 {
     object-fit: cover;
   }
 
+  .page-home .hero-copy h1 {
+    margin-top: -0.06em;
+  }
+
+}
+
+@media (min-width: 641px) {
+  .hero-home,
+  .inner-hero {
+    padding-top: 2rem;
+  }
+
+  .services-hero .inner-hero-copy h1,
+  .story-hero .inner-hero-copy h1,
+  .menu-hero .inner-hero-copy h1 {
+    margin-top: -0.06em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1985,7 +2010,7 @@ h2 {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(12, 10, 8, 0.08) 0%, rgba(12, 10, 8, 0.24) 100%);
+      linear-gradient(180deg, rgba(72, 72, 72, 0.1) 0%, rgba(72, 72, 72, 0.2) 100%);
     pointer-events: none;
   }
 
