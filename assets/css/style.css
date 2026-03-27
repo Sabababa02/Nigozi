@@ -364,14 +364,17 @@ main {
 
 .page-home .hero-actions .button {
   min-width: 14.5rem;
+  border-radius: 0;
 }
 
 .services-hero .hero-actions .button {
   min-width: 14.5rem;
+  border-radius: 0;
 }
 
 .quote-actions-story .button {
   min-width: 14.5rem;
+  border-radius: 0;
 }
 
 .eyebrow,
@@ -2010,7 +2013,7 @@ h2 {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(72, 72, 72, 0.1) 0%, rgba(72, 72, 72, 0.2) 100%);
+      linear-gradient(180deg, rgba(72, 72, 72, 0.16) 0%, rgba(72, 72, 72, 0.28) 100%);
     pointer-events: none;
   }
 
@@ -2035,7 +2038,7 @@ h2 {
     position: absolute;
     left: 0;
     right: 0;
-    top: 50%;
+    top: 47%;
     bottom: auto;
     z-index: 2;
     width: min(88vw, 18rem);
@@ -2054,9 +2057,21 @@ h2 {
     transform: translateY(-50%);
   }
 
-  .page-home .hero-copy .lead,
-  .page-home .hero-actions {
+  .page-home .hero-copy .lead {
     display: none;
+  }
+
+  .page-home .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.95rem;
+  }
+
+  .page-home .hero-actions .button {
+    min-width: 12.4rem;
+    justify-content: center;
   }
 
   h1 {
@@ -2068,6 +2083,7 @@ h2 {
     max-width: 100%;
     line-height: 1.04;
     letter-spacing: -0.03em;
+    color: #fff;
   }
 
   .page-home .hero-copy .hero-line {
@@ -2076,6 +2092,7 @@ h2 {
 
   .page-home .hero-word-accent {
     font-style: oblique 8deg;
+    color: #5b1f1f;
   }
 
   .services-hero .inner-hero-copy h1 {
