@@ -1485,6 +1485,11 @@ h2 {
 }
 
 @media (min-width: 961px) {
+  .js .hero-media-reveal {
+    animation-duration: 2200ms;
+    animation-delay: 120ms;
+  }
+
   .hero-home {
     padding: 0 1.5rem;
   }
