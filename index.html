@@ -46,16 +46,14 @@
               alt="Grande table georgienne garnie pour une reception conviviale"
             />
           </figure>
-          <div class="hero-copy" data-hero-typewriter>
-            <h1 data-typewriter-headline>
-              <span data-typewriter-text>La </span><span class="hero-word-accent" data-typewriter-text>Géorgie</span><span data-typewriter-text> à votre table</span>
-            </h1>
-            <p class="lead" data-typewriter-body>
+          <div class="hero-copy reveal hero-copy-delay" data-reveal>
+            <h1>La <span class="hero-word-accent">Géorgie</span> à votre table</h1>
+            <p class="lead">
               Nous sommes un service de traiteur basé à Paris, spécialisé dans la cuisine géorgienne
               authentique. Nous accompagnons les anniversaires, célébrations, réceptions et buffets
               d'entreprise avec une approche souple, élégante et généreuse.
             </p>
-            <div class="hero-actions" data-typewriter-controls>
+            <div class="hero-actions">
               <a class="button button-dark" href="services.html">Nos services</a>
               <a class="button button-home-light" href="histoire.html">Notre histoire</a>
             </div>
@@ -112,13 +110,30 @@
 
       </section>
 
-      <section class="contact-band contact-band-minimal section-shell reveal" id="contact" data-reveal>
-        <div class="contact-instant">
-          <div class="contact-instant-copy">
-            <h2>Devis instantané</h2>
-            <p>Éditez votre devis en 3 clics</p>
+      <section class="contact-band contact-band-minimal contact-band-framed section-shell reveal" id="contact" data-reveal>
+        <div class="contact-instant-grid">
+          <div class="contact-instant">
+            <div class="contact-instant-copy">
+              <h2>Devis instantané</h2>
+              <p>Éditez votre devis en 3 clics</p>
+            </div>
+            <a class="contact-instant-button" href="contact.html" aria-label="Demander un devis">→</a>
           </div>
-          <a class="contact-instant-button" href="contact.html" aria-label="Demander un devis">→</a>
+
+          <div class="contact-instant">
+            <div class="contact-instant-copy">
+              <h2>Besoin d'aide ?</h2>
+              <p>Appelez nous</p>
+            </div>
+            <a class="contact-instant-button" href="tel:+33612345678" aria-label="Appeler Nigozi">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1-.24c1.08.36 2.24.56 3.41.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.17.19 2.33.56 3.41a1 1 0 0 1-.24 1l-2.2 2.38Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -188,13 +203,7 @@
       </section>
     </main>
 
-    <div class="back-to-top-shell section-shell" data-back-to-top-shell>
-      <button class="back-to-top-button" type="button" aria-label="Revenir en haut" data-back-to-top>
-        ↑
-      </button>
-    </div>
-
-    <footer class="site-footer" data-site-footer>
+    <footer class="site-footer">
       <div>
         <p class="footer-brand">Nigozi</p>
         <p>Traiteur géorgien à Paris pour réceptions privées et événements professionnels.</p>
