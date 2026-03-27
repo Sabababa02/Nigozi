@@ -331,6 +331,12 @@ main {
     box-shadow 280ms ease;
 }
 
+.hero-media picture,
+.inner-hero-media picture {
+  display: block;
+  height: 100%;
+}
+
 .hero-media img,
 .inner-hero-media img {
   border-radius: inherit;
@@ -418,6 +424,10 @@ h1 {
   display: inline;
   font-style: oblique 2deg;
   line-height: inherit;
+}
+
+.hero-line {
+  display: inline;
 }
 
 h2 {
@@ -1808,18 +1818,65 @@ h2 {
 }
 
 @media (max-width: 640px) {
+  @keyframes hero-image-reveal-mobile {
+    from {
+      opacity: 0.24;
+      clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes hero-image-fade-mobile {
+    from {
+      opacity: 0.24;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .site-header {
+    background: rgba(255, 252, 248, 0.96);
+    backdrop-filter: none;
+  }
+
   .topbar {
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
+    padding: 0.55rem 0.9rem 0.5rem;
+    font-size: 0.56rem;
+    line-height: 1.2;
+    letter-spacing: 0.13em;
   }
 
   .nav-shell {
-    padding: 0.95rem 1rem 0;
+    padding: 0.8rem 0.95rem 0;
+    gap: 0.7rem;
+  }
+
+  .brand {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .brand-main {
+    font-size: clamp(1.7rem, 8vw, 2.15rem);
+    letter-spacing: 0.04em;
   }
 
   .brand-sub {
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
+    font-size: 0.5rem;
+    letter-spacing: 0.16em;
+  }
+
+  .nav-toggle {
+    padding: 0.58rem 0.82rem;
+    border-radius: 13px;
+    font-size: 0.82rem;
+    letter-spacing: 0.01em;
   }
 
   .contact-band-minimal {
@@ -1876,6 +1933,62 @@ h2 {
     padding: 0;
   }
 
+  .hero-media,
+  .inner-hero-media,
+  .hero-media img,
+  .inner-hero-media img,
+  .hero-media-reveal {
+    border-radius: 0;
+  }
+
+  .hero-media-reveal {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .js .hero-media-reveal {
+    animation-name: hero-image-reveal-mobile;
+  }
+
+  .page-home .site-header {
+    position: relative;
+  }
+
+  .js .page-home .hero-media-reveal {
+    animation: hero-image-fade-mobile 1760ms cubic-bezier(0.2, 0.8, 0.18, 1) both;
+  }
+
+  .page-home .hero-home {
+    position: relative;
+    min-height: auto;
+  }
+
+  .page-home .hero-layout {
+    position: relative;
+    display: block;
+    gap: 0;
+  }
+
+  .page-home .hero-layout > .hero-media {
+    position: relative;
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: 0;
+    aspect-ratio: 9 / 16;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .page-home .hero-layout > .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(12, 10, 8, 0.08) 0%, rgba(12, 10, 8, 0.24) 100%);
+    pointer-events: none;
+  }
+
   .hero-copy,
   .inner-hero-copy {
     padding-inline: 1rem;
@@ -1886,14 +1999,58 @@ h2 {
     aspect-ratio: 1.22 / 1;
   }
 
+  .page-home .hero-layout > .hero-media img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .page-home .hero-copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    z-index: 2;
+    width: min(88vw, 18rem);
+    margin: 0 auto;
+    padding-inline: 0;
+    text-align: center;
+    justify-items: center;
+    gap: 0;
+  }
+
+  .page-home .hero-copy.reveal {
+    transform: translateY(calc(-50% + 28px));
+  }
+
+  .page-home .hero-copy.reveal.is-visible {
+    transform: translateY(-50%);
+  }
+
+  .page-home .hero-copy .lead,
+  .page-home .hero-actions {
+    display: none;
+  }
+
   h1 {
     font-size: clamp(2.5rem, 15vw, 4rem);
   }
 
   .page-home .hero-copy h1 {
-    font-size: clamp(2.1rem, 10.5vw, 3.1rem);
+    font-size: clamp(2.15rem, 11.2vw, 3.35rem);
     max-width: 100%;
-    line-height: 1.02;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+
+  .page-home .hero-copy .hero-line {
+    display: block;
+  }
+
+  .page-home .hero-word-accent {
+    font-style: oblique 8deg;
   }
 
   .services-hero .inner-hero-copy h1 {
