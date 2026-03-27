@@ -9,10 +9,13 @@ if (navToggle && siteNav) {
     const isOpen = siteNav.classList.contains("is-open");
 
     siteNav.inert = isMobile && !isOpen;
+    document.body.classList.toggle("menu-open", isMobile && isOpen);
+    navToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
 
     if (!isMobile) {
       siteNav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
     }
   };
 

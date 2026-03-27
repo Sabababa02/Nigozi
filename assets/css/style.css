@@ -290,6 +290,21 @@ body.is-scrolled .site-header::after {
     box-shadow 220ms ease;
 }
 
+.nav-toggle span {
+  display: block;
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition:
+    transform 240ms ease,
+    opacity 200ms ease;
+}
+
+.nav-toggle span + span {
+  margin-top: 0.22rem;
+}
+
 main {
   overflow-x: clip;
 }
@@ -363,18 +378,24 @@ main {
 }
 
 .page-home .hero-actions .button {
-  min-width: 14.5rem;
-  border-radius: 0;
+  min-width: 13.2rem;
+  min-height: 3.05rem;
+  padding-inline: 1.15rem;
+  border-radius: var(--button-radius);
 }
 
 .services-hero .hero-actions .button {
-  min-width: 14.5rem;
-  border-radius: 0;
+  min-width: 13.2rem;
+  min-height: 3.05rem;
+  padding-inline: 1.15rem;
+  border-radius: var(--button-radius);
 }
 
 .quote-actions-story .button {
-  min-width: 14.5rem;
-  border-radius: 0;
+  min-width: 13.2rem;
+  min-height: 3.05rem;
+  padding-inline: 1.15rem;
+  border-radius: var(--button-radius);
 }
 
 .eyebrow,
@@ -1534,6 +1555,19 @@ h2 {
 }
 
 @media (max-width: 960px) {
+  .site-header {
+    z-index: 30;
+  }
+
+  .nav-shell {
+    position: relative;
+    z-index: 31;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
   .nav-shell {
     grid-template-columns: 1fr auto;
     grid-template-areas:
@@ -1567,31 +1601,31 @@ h2 {
   }
 
   .site-nav {
-    grid-area: nav;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-self: stretch;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    max-height: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 5.7rem;
+    bottom: 0;
+    z-index: 12;
+    display: grid;
+    align-content: start;
+    justify-items: center;
+    gap: 1.25rem;
+    overflow-y: auto;
     opacity: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    transform: translateY(-0.45rem);
+    padding: 1.8rem 1.5rem 2rem;
+    transform: translateY(-0.8rem);
     pointer-events: none;
+    background: rgba(251, 242, 231, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    transition:
+      opacity 260ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0ms linear 360ms;
+    visibility: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    transition:
-      max-height 360ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 240ms ease,
-      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
-      padding-top 360ms cubic-bezier(0.22, 1, 0.36, 1),
-      padding-bottom 360ms cubic-bezier(0.22, 1, 0.36, 1);
-    border-top: 1px solid var(--line);
   }
 
   .site-nav::-webkit-scrollbar {
@@ -1600,18 +1634,21 @@ h2 {
 
   .site-nav a {
     flex: none;
-    white-space: nowrap;
-    font-size: 0.9rem;
+    white-space: normal;
+    font-size: clamp(1.45rem, 5vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
     text-align: center;
   }
 
   .site-nav.is-open {
-    max-height: 4.5rem;
     opacity: 1;
-    padding-top: 1rem;
-    padding-bottom: 0.3rem;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity 260ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .hero-layout,
@@ -1901,10 +1938,31 @@ h2 {
   }
 
   .nav-toggle {
-    padding: 0.58rem 0.82rem;
-    border-radius: 13px;
-    font-size: 0.82rem;
-    letter-spacing: 0.01em;
+    width: 2.7rem;
+    height: 2.7rem;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    border-color: transparent;
+    box-shadow: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(0.4rem) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-0.4rem) rotate(-45deg);
   }
 
   .contact-band-minimal {
@@ -1974,15 +2032,11 @@ h2 {
   }
 
   .js .hero-media-reveal {
-    animation-name: hero-image-reveal-mobile;
+    animation: hero-image-fade-mobile 1760ms cubic-bezier(0.2, 0.8, 0.18, 1) both;
   }
 
   .page-home .site-header {
     position: relative;
-  }
-
-  .js .page-home .hero-media-reveal {
-    animation: hero-image-fade-mobile 1760ms cubic-bezier(0.2, 0.8, 0.18, 1) both;
   }
 
   .page-home .hero-home {
@@ -2070,7 +2124,9 @@ h2 {
   }
 
   .page-home .hero-actions .button {
-    min-width: 12.4rem;
+    min-width: 11.2rem;
+    min-height: 2.9rem;
+    padding-inline: 0.95rem;
     justify-content: center;
   }
 
