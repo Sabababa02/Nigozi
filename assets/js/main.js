@@ -45,14 +45,22 @@ if (navToggle && siteNav) {
 const reveals = document.querySelectorAll("[data-reveal]");
 
 if ("IntersectionObserver" in window && reveals.length) {
+  const revealThreshold = 0.18;
   const revealObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
-        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+        const isVisibleEnough = entry.isIntersecting && entry.intersectionRatio >= revealThreshold;
+        if (!isVisibleEnough) {
+          return;
+        }
+
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
       });
     },
     {
-      threshold: 0.05,
+      threshold: [0, revealThreshold],
+      rootMargin: "0px 0px -12% 0px",
     }
   );
 
@@ -65,12 +73,143 @@ if ("IntersectionObserver" in window && reveals.length) {
   reveals.forEach(element => element.classList.add("is-visible"));
 }
 
+const homepageHeroTypewriter = document.querySelector(".page-home [data-hero-typewriter]");
+
+if (homepageHeroTypewriter) {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const headlineSegments = [
+    ...homepageHeroTypewriter.querySelectorAll("[data-typewriter-headline] [data-typewriter-text]"),
+  ];
+  const bodyElement = homepageHeroTypewriter.querySelector("[data-typewriter-body]");
+
+  const wrapCharacters = (element, startDelay, charInterval, variant) => {
+    const text = element.textContent || "";
+    const fragment = document.createDocumentFragment();
+
+    Array.from(text).forEach((char, index) => {
+      const span = document.createElement("span");
+      span.className = variant === "body" ? "typewriter-char typewriter-char--body" : "typewriter-char";
+      span.textContent = variant === "body" ? char : char === " " ? "\u00A0" : char;
+      span.style.transitionDelay = `${startDelay + index * charInterval}ms`;
+      fragment.append(span);
+    });
+
+    element.textContent = "";
+    element.append(fragment);
+
+    return startDelay + text.length * charInterval;
+  };
+
+  if (!prefersReducedMotion && (headlineSegments.length || bodyElement)) {
+    try {
+      let nextDelay = 0;
+      const headlineInterval = 44;
+      const bodyInterval = 8;
+
+      headlineSegments.forEach(segment => {
+        nextDelay = wrapCharacters(segment, nextDelay, headlineInterval, "headline");
+      });
+
+      if (bodyElement) {
+        nextDelay += 120;
+        nextDelay = wrapCharacters(bodyElement, nextDelay, bodyInterval, "body");
+      }
+
+      homepageHeroTypewriter.dataset.typewriterReady = "true";
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          homepageHeroTypewriter.dataset.typewriterStarted = "true";
+        });
+      });
+
+      window.setTimeout(() => {
+        homepageHeroTypewriter.dataset.typewriterComplete = "true";
+      }, nextDelay + 360);
+    } catch {
+      delete homepageHeroTypewriter.dataset.typewriterReady;
+      delete homepageHeroTypewriter.dataset.typewriterStarted;
+      delete homepageHeroTypewriter.dataset.typewriterComplete;
+    }
+  } else {
+    homepageHeroTypewriter.dataset.typewriterComplete = "true";
+  }
+}
+
 const updateScrollState = () => {
   document.body.classList.toggle("is-scrolled", window.scrollY > 20);
 };
 
 window.addEventListener("scroll", updateScrollState, { passive: true });
 updateScrollState();
+
+const siteFooter = document.querySelector("[data-site-footer]");
+const backToTopShell = document.querySelector("[data-back-to-top-shell]");
+const backToTopButton = document.querySelector("[data-back-to-top]");
+
+if (backToTopButton) {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scrollElement = document.scrollingElement || document.documentElement;
+  let backToTopFrame = null;
+
+  const easeInOutSine = progress => -(Math.cos(Math.PI * progress) - 1) / 2;
+
+  const scrollToTopSmoothly = () => {
+    const startY = scrollElement.scrollTop;
+    const duration = 920;
+    const startTime = performance.now();
+
+    if (backToTopFrame !== null) {
+      window.cancelAnimationFrame(backToTopFrame);
+    }
+
+    const step = currentTime => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeInOutSine(progress);
+
+      scrollElement.scrollTop = Math.round(startY * (1 - easedProgress));
+
+      if (progress < 1) {
+        backToTopFrame = window.requestAnimationFrame(step);
+        return;
+      }
+
+      scrollElement.scrollTop = 0;
+      backToTopFrame = null;
+    };
+
+    backToTopFrame = window.requestAnimationFrame(step);
+  };
+
+  backToTopButton.addEventListener("click", () => {
+    if (prefersReducedMotion) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    scrollToTopSmoothly();
+  });
+}
+
+if (siteFooter && backToTopShell) {
+  if ("IntersectionObserver" in window) {
+    const footerObserver = new IntersectionObserver(
+      entries => {
+        const isFooterVisible = entries.some(entry => entry.isIntersecting);
+        backToTopShell.classList.toggle("is-visible", isFooterVisible);
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -3% 0px",
+      }
+    );
+
+    footerObserver.observe(siteFooter);
+  } else {
+    backToTopShell.classList.add("is-visible");
+  }
+}
 
 const carousel = document.querySelector("[data-carousel]");
 

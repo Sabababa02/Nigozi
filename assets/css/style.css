@@ -355,6 +355,41 @@ main {
   align-self: start;
 }
 
+.typewriter-char {
+  display: inline-block;
+  white-space: pre;
+  transform: none;
+}
+
+.typewriter-char--body {
+  display: inline;
+  white-space: normal;
+}
+
+.js .page-home .hero-copy[data-typewriter-ready="true"] .typewriter-char {
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.js .page-home .hero-copy[data-typewriter-started="true"] .typewriter-char {
+  opacity: 1;
+}
+
+.js .page-home .hero-copy[data-typewriter-ready="true"] [data-typewriter-controls] {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 420ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .page-home .hero-copy[data-typewriter-complete="true"] [data-typewriter-controls] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 .page-home .hero-layout {
   align-items: start;
 }
@@ -750,8 +785,8 @@ h2 {
   opacity: 1;
   transform: none;
   transition:
-    opacity 920ms ease,
-    transform 920ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 1240ms ease,
+    transform 1240ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .carousel-slide img {
@@ -789,15 +824,15 @@ h2 {
 }
 
 .js .gallery-section.is-visible .carousel-slide:nth-child(1) {
-  transition-delay: 140ms;
+  transition-delay: 220ms;
 }
 
 .js .gallery-section.is-visible .carousel-slide:nth-child(2) {
-  transition-delay: 420ms;
+  transition-delay: 640ms;
 }
 
 .js .gallery-section.is-visible .carousel-slide:nth-child(3) {
-  transition-delay: 700ms;
+  transition-delay: 1060ms;
 }
 
 .carousel-dots {
@@ -1001,8 +1036,8 @@ h2 {
   opacity: 1;
   transform: none;
   transition:
-    transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 620ms ease,
+    transform 1080ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 920ms ease,
     box-shadow 280ms ease;
 }
 
@@ -1029,17 +1064,6 @@ h2 {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .hero-media:hover,
-  .inner-hero-media:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 30px 72px rgba(75, 43, 18, 0.14);
-  }
-
-  .js .reveal.hero-media.is-visible:hover,
-  .js .reveal.inner-hero-media.is-visible:hover {
-    transform: translateY(-7px);
-  }
-
   .js .reveal-side.is-visible:hover {
     transform: translateY(-7px);
   }
@@ -1348,6 +1372,55 @@ h2 {
   padding-top: 0.5rem;
 }
 
+.back-to-top-shell {
+  display: grid;
+  justify-items: center;
+  padding-top: 0.4rem;
+  padding-bottom: 0.9rem;
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+  transition:
+    opacity 320ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.back-to-top-shell.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top-button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font: inherit;
+  font-size: 0.96rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 240ms ease,
+    color 240ms ease,
+    border-color 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .back-to-top-button:hover,
+  .back-to-top-button:focus-visible {
+    background-color: #fff;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(10rem, 1fr));
@@ -1396,7 +1469,7 @@ h2 {
 }
 
 .js .hero-media-reveal {
-  animation: hero-image-reveal 1400ms cubic-bezier(0.2, 0.8, 0.18, 1) both;
+  animation: hero-image-reveal 1760ms cubic-bezier(0.2, 0.8, 0.18, 1) both;
   transition:
     transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 280ms ease;
@@ -1472,6 +1545,7 @@ h2 {
   .button,
   .carousel-slide,
   .carousel-button,
+  .back-to-top-button,
   .site-nav a::after {
     animation: none;
     transition: none;
@@ -1683,6 +1757,11 @@ h2 {
     padding-inline: 1.5rem;
   }
 
+  .back-to-top-shell {
+    padding-top: 0.15rem;
+    padding-bottom: 0.8rem;
+  }
+
   .contact-instant {
     gap: 0.9rem;
   }
@@ -1816,6 +1895,12 @@ h2 {
 
   .contact-band-minimal {
     padding: 2.5rem 1rem;
+  }
+
+  .back-to-top-button {
+    width: 2.55rem;
+    height: 2.55rem;
+    font-size: 0.9rem;
   }
 
   .section-shell,
