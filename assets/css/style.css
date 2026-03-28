@@ -1386,13 +1386,14 @@ h2 {
 
 .story-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
 }
 
 .story-column {
   display: grid;
   gap: 1rem;
+  max-width: 44rem;
 }
 
 .timeline {
@@ -1718,6 +1719,15 @@ h2 {
     padding: 0;
   }
 
+  .js .reveal-side.is-visible:hover,
+  .carousel-slide:hover img {
+    transform: none;
+  }
+
+  .carousel-slide:hover img {
+    box-shadow: none;
+  }
+
   .inner-hero {
     padding: 0;
   }
@@ -1781,6 +1791,11 @@ h2 {
   .quote-form-panel .button {
     width: auto;
     min-width: 0;
+  }
+
+  .quote-actions-story .button {
+    width: 13.2rem;
+    min-width: 13.2rem;
   }
 
   .quote-form-panel .button {
@@ -2380,10 +2395,12 @@ h2 {
   }
 
   .button {
-    width: min(14.25rem, calc(100vw - 2rem));
-    min-width: min(14.25rem, calc(100vw - 2rem));
+    width: 13.75rem;
+    min-width: 13.75rem;
+    height: 3rem;
     min-height: 3rem;
     padding-inline: 1rem;
+    white-space: nowrap;
   }
 
   .carousel-track {
