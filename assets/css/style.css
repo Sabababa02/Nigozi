@@ -296,7 +296,8 @@ body.is-scrolled .site-header::after {
 
 .site-nav a:hover::after,
 .site-nav a:focus-visible::after,
-.site-nav a.active::after {
+.site-nav a.active::after,
+.site-nav a.is-target-active::after {
   transform: translateX(-50%) scaleX(1);
 }
 
@@ -1785,7 +1786,8 @@ h2 {
 
   .site-nav a:hover .nav-link-title::after,
   .site-nav a:focus-visible .nav-link-title::after,
-  .site-nav a.active .nav-link-title::after {
+  .site-nav a.active .nav-link-title::after,
+  .site-nav a.is-target-active .nav-link-title::after {
     transform: translateX(-50%) scaleX(1);
   }
 
