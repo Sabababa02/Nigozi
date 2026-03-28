@@ -43,6 +43,11 @@ if (navToggle && siteNav && siteHeader) {
         return;
       }
 
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#")) {
+        return;
+      }
+
       siteNav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
       syncNavAccessibility();
