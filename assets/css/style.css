@@ -619,16 +619,20 @@ h2 {
 
 @media (hover: none) and (pointer: coarse) {
   .button:active,
+  .button.is-tapped,
   .carousel-button:active,
-  .nav-toggle:active {
-    background-color: var(--accent);
-    color: #fbf6f0;
-    border-color: var(--accent);
+  .carousel-button.is-tapped,
+  .nav-toggle:active,
+  .nav-toggle.is-tapped {
+    background-color: #fff;
+    color: var(--ink);
+    border-color: var(--ink);
   }
 
-  .contact-instant-button:active {
-    background-color: var(--ink);
-    color: #fbf6f0;
+  .contact-instant-button:active,
+  .contact-instant-button.is-tapped {
+    background-color: #fff;
+    color: var(--ink);
     border-color: var(--ink);
   }
 

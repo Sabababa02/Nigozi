@@ -58,6 +58,54 @@ if (navToggle && siteNav && siteHeader) {
   syncNavAccessibility();
 }
 
+const tapFeedbackMedia = window.matchMedia("(hover: none) and (pointer: coarse)");
+const tapFeedbackTargets = document.querySelectorAll(
+  ".button, .carousel-button, .nav-toggle, .contact-instant-button"
+);
+
+if (tapFeedbackTargets.length) {
+  const tapFeedbackTimers = new WeakMap();
+
+  const clearTapFeedback = target => {
+    const existingTimer = tapFeedbackTimers.get(target);
+    if (existingTimer) {
+      window.clearTimeout(existingTimer);
+      tapFeedbackTimers.delete(target);
+    }
+
+    target.classList.remove("is-tapped");
+  };
+
+  const applyTapFeedback = target => {
+    if (!tapFeedbackMedia.matches) {
+      return;
+    }
+
+    clearTapFeedback(target);
+    target.classList.add("is-tapped");
+
+    const timer = window.setTimeout(() => {
+      target.classList.remove("is-tapped");
+      tapFeedbackTimers.delete(target);
+    }, 170);
+
+    tapFeedbackTimers.set(target, timer);
+  };
+
+  tapFeedbackTargets.forEach(target => {
+    target.addEventListener("pointerdown", event => {
+      if (event.pointerType !== "touch" && event.pointerType !== "pen") {
+        return;
+      }
+
+      applyTapFeedback(target);
+    });
+
+    target.addEventListener("blur", () => clearTapFeedback(target));
+    target.addEventListener("pointercancel", () => clearTapFeedback(target));
+  });
+}
+
 const reveals = document.querySelectorAll("[data-reveal]");
 
 if ("IntersectionObserver" in window && reveals.length) {
