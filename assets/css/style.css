@@ -284,12 +284,12 @@ body.is-scrolled .site-header::after {
 .site-nav a::after {
   content: "";
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: -0.45rem;
-  width: 100%;
+  width: 50%;
   height: 1px;
   background: currentColor;
-  transform: scaleX(0);
+  transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   transition: transform 220ms ease;
 }
@@ -297,7 +297,7 @@ body.is-scrolled .site-header::after {
 .site-nav a:hover::after,
 .site-nav a:focus-visible::after,
 .site-nav a.active::after {
-  transform: scaleX(1);
+  transform: translateX(-50%) scaleX(1);
 }
 
 .nav-toggle {
@@ -1775,7 +1775,7 @@ h2 {
     position: absolute;
     left: 50%;
     bottom: -0.2rem;
-    width: 3.8rem;
+    width: 50%;
     height: 1px;
     background: currentColor;
     transform: translateX(-50%) scaleX(0);
