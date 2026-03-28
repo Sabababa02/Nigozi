@@ -1732,7 +1732,6 @@ h2 {
     transform: none !important;
     box-shadow: none !important;
     transition: none;
-    pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
   }
@@ -2412,9 +2411,24 @@ h2 {
     white-space: nowrap;
   }
 
+  .carousel {
+    grid-template-columns: 1fr;
+  }
+
   .carousel-track {
+    grid-auto-flow: column;
     grid-auto-columns: minmax(88vw, 88vw);
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     padding-bottom: 0.7rem;
+    touch-action: pan-y pinch-zoom;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-slide {
+    scroll-snap-align: start;
   }
 
   .hero-actions,
