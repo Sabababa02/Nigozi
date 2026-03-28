@@ -2422,7 +2422,7 @@ h2 {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 0.7rem;
-    touch-action: pan-y pinch-zoom;
+    touch-action: auto;
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
   }
