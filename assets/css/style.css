@@ -126,6 +126,14 @@ a {
   text-decoration: none;
 }
 
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 p,
 h1,
 h2,
@@ -251,6 +259,26 @@ body.is-scrolled .site-header::after {
 .site-nav a {
   position: relative;
   font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand,
+.site-nav a,
+.contact-phone a,
+.contact-item-value a,
+.site-footer a,
+.faq-question {
+  transition: color 220ms ease;
+}
+
+.nav-link-title {
+  display: inline;
+}
+
+.nav-link-desc {
+  display: none;
 }
 
 .site-nav a::after {
@@ -586,6 +614,35 @@ h2 {
     background-color: #fff;
     color: #5b1f1f;
     border-color: #5b1f1f;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .button:active,
+  .carousel-button:active,
+  .nav-toggle:active {
+    background-color: var(--accent);
+    color: #fbf6f0;
+    border-color: var(--accent);
+  }
+
+  .contact-instant-button:active {
+    background-color: var(--ink);
+    color: #fbf6f0;
+    border-color: var(--ink);
+  }
+
+  .site-nav a:active,
+  .site-footer a:active,
+  .contact-phone a:active,
+  .contact-item-value a:active,
+  .brand:active,
+  .faq-question:active {
+    color: var(--accent);
+  }
+
+  .site-nav a:active::after {
+    transform: scaleX(1);
   }
 }
 
@@ -1660,12 +1717,12 @@ h2 {
     min-height: calc(100vh - var(--mobile-header-offset, 5.7rem));
     z-index: 12;
     display: grid;
-    align-content: start;
+    align-content: center;
     justify-items: center;
-    gap: 1.25rem;
+    gap: 1.65rem;
     overflow-y: auto;
     opacity: 0;
-    padding: 1.8rem 1.5rem 2rem;
+    padding: 2.4rem 1.5rem 2.8rem;
     transform: translateY(-0.8rem);
     pointer-events: none;
     background: rgba(251, 242, 231, 0.98);
@@ -1686,11 +1743,30 @@ h2 {
 
   .site-nav a {
     flex: none;
+    display: grid;
+    gap: 0;
+    justify-items: center;
+    width: min(100%, 24rem);
+    padding: 0.35rem 0;
+    min-height: 4.5rem;
+    align-content: center;
     white-space: normal;
-    font-size: clamp(1.45rem, 5vw, 2rem);
-    line-height: 1.15;
+    font-size: clamp(1.65rem, 5vw, 2.2rem);
+    line-height: 1.08;
     letter-spacing: 0.02em;
     text-align: center;
+  }
+
+  .site-nav a::after {
+    bottom: -0.2rem;
+  }
+
+  .nav-link-title {
+    display: block;
+  }
+
+  .nav-link-desc {
+    display: none;
   }
 
   .site-nav.is-open {
@@ -1956,7 +2032,7 @@ h2 {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 960px) {
   @keyframes hero-image-reveal-mobile {
     from {
       opacity: 0.24;
@@ -1997,8 +2073,8 @@ h2 {
   }
 
   .brand {
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
   }
 
   .brand-main {

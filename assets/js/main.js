@@ -100,7 +100,7 @@ const homeHero = document.querySelector(".page-home .hero-home");
 const homeHeroNextSection = homeHero?.nextElementSibling;
 const heroImageSections = [...document.querySelectorAll(".hero-home, .inner-hero")];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const mobileHeroTitleMotion = window.matchMedia("(max-width: 640px)");
+const mobileHeroTitleMotion = window.matchMedia("(max-width: 960px)");
 
 if (homeHero && !prefersReducedMotion.matches) {
   let heroTitleTicking = false;
