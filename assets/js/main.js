@@ -176,9 +176,8 @@ if (heroImageSections.length && !prefersReducedMotion.matches) {
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
 
     heroImageSections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      const travel = viewportHeight + rect.height;
-      const progress = Math.min(Math.max((viewportHeight - rect.top) / Math.max(travel, 1), 0), 1);
+      const localScroll = Math.max(window.scrollY - section.offsetTop, 0);
+      const progress = Math.min(localScroll / Math.max(section.offsetHeight, 1), 1);
       const imageShift = progress * 84;
       section.style.setProperty("--hero-image-shift", `${imageShift.toFixed(2)}px`);
 
