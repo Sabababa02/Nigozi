@@ -179,7 +179,7 @@ if (heroImageSections.length && !prefersReducedMotion.matches) {
       const rect = section.getBoundingClientRect();
       const travel = viewportHeight + rect.height;
       const progress = Math.min(Math.max((viewportHeight - rect.top) / Math.max(travel, 1), 0), 1);
-      const imageShift = -(progress * 42);
+      const imageShift = progress * 42;
       section.style.setProperty("--hero-image-shift", `${imageShift.toFixed(2)}px`);
 
       if (section === homeHero) {
@@ -301,13 +301,21 @@ if (carousel) {
       const touch = event.touches[0];
       const deltaX = touch.clientX - touchStartX;
       const deltaY = touch.clientY - touchStartY;
+      const absDeltaX = Math.abs(deltaX);
+      const absDeltaY = Math.abs(deltaY);
 
       if (!touchMode) {
-        if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) {
+        if (absDeltaX < 10 && absDeltaY < 10) {
           return;
         }
 
-        touchMode = Math.abs(deltaX) > Math.abs(deltaY) ? "horizontal" : "vertical";
+        if (absDeltaX > absDeltaY * 1.2) {
+          touchMode = "horizontal";
+        } else if (absDeltaY > absDeltaX * 1.1) {
+          touchMode = "vertical";
+        } else {
+          return;
+        }
       }
 
       if (touchMode !== "horizontal") {
@@ -316,6 +324,23 @@ if (carousel) {
 
       event.preventDefault();
       track.scrollLeft = touchStartScrollLeft - deltaX;
+    },
+    { passive: false }
+  );
+
+  track.addEventListener(
+    "wheel",
+    event => {
+      if (mobileCarouselMedia.matches || event.shiftKey) {
+        return;
+      }
+
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+        return;
+      }
+
+      event.preventDefault();
+      window.scrollBy({ top: event.deltaY, left: 0, behavior: "auto" });
     },
     { passive: false }
   );

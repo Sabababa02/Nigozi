@@ -895,9 +895,9 @@ h2 {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem 0;
+  position: relative;
+  padding: 1.5rem 2.4rem 1.5rem 0;
   background: transparent;
   border: 0;
   color: var(--accent);
@@ -906,15 +906,33 @@ h2 {
   font-size: clamp(1.25rem, 2vw, 1.7rem);
 }
 
+.faq-question::before,
 .faq-question::after {
-  content: "+";
-  color: var(--ink);
-  font-size: 1.5rem;
-  flex: none;
+  content: "";
+  position: absolute;
+  right: 0.2rem;
+  top: 50%;
+  width: 1rem;
+  height: 1.5px;
+  border-radius: 999px;
+  background: var(--ink);
+  transform-origin: center;
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease;
+}
+
+.faq-question::before {
+  transform: translateY(-50%);
+}
+
+.faq-question::after {
+  transform: translateY(-50%) rotate(90deg);
 }
 
 .faq-question[aria-expanded="true"]::after {
-  content: "−";
+  transform: translateY(-50%) rotate(180deg) scaleX(0.1);
+  opacity: 0;
 }
 
 .faq-answer {
@@ -1021,6 +1039,10 @@ h2 {
   padding-bottom: 1.9rem;
 }
 
+.services-showcase-heading h2 {
+  max-width: 18ch;
+}
+
 .menu-grid-heading {
   padding-bottom: 1.9rem;
 }
@@ -1118,7 +1140,7 @@ h2 {
 .service-feature-copy h2 {
   font-size: clamp(2rem, 3.2vw, 3.35rem);
   line-height: 1;
-  max-width: 13ch;
+  max-width: 18ch;
   text-wrap: balance;
 }
 
@@ -2144,22 +2166,21 @@ h2 {
 
   .page-home .hero-layout > .hero-media img,
   .inner-hero > .inner-hero-media img {
-    transform: translate3d(0, var(--hero-image-shift, 0px), 0) scale(1.08);
-    will-change: transform;
+    transform: scale(1.08);
+    object-position: center calc(50% + var(--hero-image-shift, 0px));
+    will-change: transform, object-position;
   }
 
   .page-home .hero-layout > .hero-media img {
     height: 100%;
     aspect-ratio: auto;
     object-fit: cover;
-    object-position: center center;
   }
 
   .inner-hero > .inner-hero-media img {
     height: 100%;
     aspect-ratio: auto;
     object-fit: cover;
-    object-position: center center;
   }
 
   .page-home .hero-copy {
@@ -2356,6 +2377,13 @@ h2 {
     font-size: clamp(1.8rem, 8vw, 2.35rem);
     max-width: 100%;
     line-height: 1.04;
+  }
+
+  .button {
+    width: min(14.25rem, calc(100vw - 2rem));
+    min-width: min(14.25rem, calc(100vw - 2rem));
+    min-height: 3rem;
+    padding-inline: 1rem;
   }
 
   .carousel-track {
