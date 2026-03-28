@@ -1728,6 +1728,15 @@ h2 {
     box-shadow: none;
   }
 
+  .carousel-slide img {
+    transform: none !important;
+    box-shadow: none !important;
+    transition: none;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
   .inner-hero {
     padding: 0;
   }

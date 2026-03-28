@@ -228,10 +228,6 @@ if (carousel) {
   const nextButton = carousel.querySelector(".carousel-next");
   const dots = [...document.querySelectorAll(".carousel-dots .dot")];
   const mobileCarouselMedia = window.matchMedia("(max-width: 960px)");
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartScrollLeft = 0;
-  let touchMode = null;
 
   const getStep = () => {
     if (!slides.length) {
@@ -275,59 +271,6 @@ if (carousel) {
   syncDots();
 
   track.addEventListener(
-    "touchstart",
-    event => {
-      if (!mobileCarouselMedia.matches || event.touches.length !== 1) {
-        return;
-      }
-
-      const touch = event.touches[0];
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
-      touchStartScrollLeft = track.scrollLeft;
-      touchMode = null;
-    },
-    { passive: true }
-  );
-
-  track.addEventListener(
-    "touchmove",
-    event => {
-      if (!mobileCarouselMedia.matches || event.touches.length !== 1) {
-        return;
-      }
-
-      const touch = event.touches[0];
-      const deltaX = touch.clientX - touchStartX;
-      const deltaY = touch.clientY - touchStartY;
-      const absDeltaX = Math.abs(deltaX);
-      const absDeltaY = Math.abs(deltaY);
-
-      if (!touchMode) {
-        if (absDeltaX < 10 && absDeltaY < 10) {
-          return;
-        }
-
-        if (absDeltaX > absDeltaY * 1.2) {
-          touchMode = "horizontal";
-        } else if (absDeltaY > absDeltaX * 1.1) {
-          touchMode = "vertical";
-        } else {
-          return;
-        }
-      }
-
-      if (touchMode !== "horizontal") {
-        return;
-      }
-
-      event.preventDefault();
-      track.scrollLeft = touchStartScrollLeft - deltaX;
-    },
-    { passive: false }
-  );
-
-  track.addEventListener(
     "wheel",
     event => {
       if (mobileCarouselMedia.matches || event.shiftKey) {
@@ -343,13 +286,6 @@ if (carousel) {
     },
     { passive: false }
   );
-
-  const resetTouchMode = () => {
-    touchMode = null;
-  };
-
-  track.addEventListener("touchend", resetTouchMode, { passive: true });
-  track.addEventListener("touchcancel", resetTouchMode, { passive: true });
 }
 
 const faqQuestions = document.querySelectorAll(".faq-question");
