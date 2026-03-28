@@ -179,7 +179,7 @@ if (heroImageSections.length && !prefersReducedMotion.matches) {
       const rect = section.getBoundingClientRect();
       const travel = viewportHeight + rect.height;
       const progress = Math.min(Math.max((viewportHeight - rect.top) / Math.max(travel, 1), 0), 1);
-      const imageShift = progress * 42;
+      const imageShift = progress * 84;
       section.style.setProperty("--hero-image-shift", `${imageShift.toFixed(2)}px`);
 
       if (section === homeHero) {
