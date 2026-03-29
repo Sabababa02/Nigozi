@@ -40,12 +40,20 @@ if (navToggle && siteNav && siteHeader) {
 
   siteNav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", event => {
-      if (!mobileNavMedia.matches) {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        link.target === "_blank"
+      ) {
         return;
       }
 
       const href = link.getAttribute("href") || "";
-      if (!href.startsWith("#")) {
+      if (!href || !href.startsWith("#")) {
         event.preventDefault();
 
         if (navTransitionTimer) {
@@ -64,7 +72,11 @@ if (navToggle && siteNav && siteHeader) {
 
         navTransitionTimer = window.setTimeout(() => {
           window.location.assign(link.href);
-        }, 180);
+        }, 70);
+        return;
+      }
+
+      if (!mobileNavMedia.matches) {
         return;
       }
 
@@ -342,23 +354,6 @@ if (carousel) {
   track.addEventListener("scroll", syncDots, { passive: true });
   window.addEventListener("resize", syncDots);
   syncDots();
-
-  track.addEventListener(
-    "wheel",
-    event => {
-      if (mobileCarouselMedia.matches || event.shiftKey) {
-        return;
-      }
-
-      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
-        return;
-      }
-
-      event.preventDefault();
-      window.scrollBy({ top: event.deltaY, left: 0, behavior: "auto" });
-    },
-    { passive: false }
-  );
 }
 
 const faqQuestions = document.querySelectorAll(".faq-question");
